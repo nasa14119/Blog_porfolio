@@ -1,0 +1,65 @@
+---
+import Default from "../../components/Default.astro";
+import Button from "../../components/Button.astro";
+import Nav from "../../components/Nav.astro";
+import PreviewArticle from "../../components/PreviewArticle.astro";
+import ShareBoton from "../../components/ShareBotton";
+const posts = await Astro.glob(".././blog/post/*.md");
+---
+
+<Default>
+  <Nav />
+  <header
+    class="p-5 mx-5 rounded-3xl bg-[var(--grey-blue)] md:pt-20 md:px-20 flex flex-col justify-between md:gap-y-5 gap-y-2"
+  >
+    <h1 class="text-7xl md:my-auto my-10">Blog Title</h1>
+    <p class="text-xs font-em md:font-strong md:w-1/2">
+      Lorem ipsum dolor sit, amet consectetur adipisicing elit. Et excepturi
+      provident, unde praesentium enim explicabo ullam quidem deleniti modi nam
+      nihil doloremque esse hic corrupti?
+    </p>
+    <span
+      class="relative mt-5 flex justify-between gap-x-9 md:flex-row flex-col"
+    >
+      <em class="not-italic absolute bottom-auto -top-3 md:-top-5"
+        >Join our newsletter!</em
+      >
+      <input
+        type="email"
+        id=""
+        placeholder="hello@email.com"
+        class="md:w-4/6 outline-none py-2 px-6 rounded-md caret-[#cccccc] md:m-0 my-3"
+        style="border: #cccccc60 2.5px solid; "
+      />
+      <Button body="submit" id="some_id" extraStyles={["md:w-2/6"]} />
+    </span>
+  </header>
+  <section class="flex mx-10 justify-between gap-x-5 md:mx-24 md:justify-start">
+    <Button id="login" extraStyles={["md:w-fit px-3 w-full"]} body="login"/>
+    <Button body="Create Acount" id="createAcount" extraStyles={["md:w-2/6 px-3 w-full md:w-fit"]} />
+  </section>
+  <main class="py-5 mx-5 grid md:grid-cols-3">
+    {
+      posts.map((post) => {
+        const url = post.url;
+        const { heroImage, title, hashtags, date } = post.frontmatter;
+        return(<PreviewArticle date={date} hashtags={hashtags} link={url} title={title} img={heroImage}/>)
+      })
+    }
+  </main>
+</Default>
+<style>
+  header span em {
+    font-size: 14px;
+  }
+</style>
+<script>
+  const login = document.querySelector("#login"); 
+  login.addEventListener("click", ()=>{
+    window.location.href = "/login"
+  }); 
+  const createAcount = document.querySelector("#createAcount"); 
+  createAcount.addEventListener("click", ()=>{
+    window.location.href = "/createacount"
+  }); 
+</script>

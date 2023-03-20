@@ -1,0 +1,78 @@
+---
+import "./index.css"
+---
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="generator" content={Astro.generator} />
+		<title>Astro</title>
+	</head>
+	<body>
+		<header class="grid place-content-center h-screen p-10">
+			<h1 class=" rounded-3xl font-header text-4xl text-neutral-500">Nicolas amaya</h1>
+			<p class="font-p text-sm  md:mx-2 text-justify  md:w-1/2 max-w-[300px] md:max-w-none">
+				Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repellendus facere explicabo repellat voluptates vel. Incidunt quae, distinctio libero quasi dolorem qui corrupti sunt a rerum!
+			</p>
+			<p class="font-p text-sm w-6/12 text-justify pt-5 md:mx-2">
+				Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repellendus facere explicabo repellat voluptates vel. Incidunt quae, distinctio libero quasi dolorem qui corrupti sunt a rerum!
+			</p>
+		</header>
+		<!-- <img srcset="https://picsum.photos/g/200/250, https://picsum.photos/g/700/750" sizes="(max-width: 766px) 200px, (max-width: 768px) 700px" alt="" class="absolute bottom-14 right-4 rounded-3xl w-5/12"> -->
+		<img src="https://picsum.photos/g/700/750" alt="ImageHero" class="absolute md:bottom-14 right-4 bottom-20 rounded-3xl w-5/12">
+		<nav class=" fixed bottom-4  bg-[#f4a460] rounded-r-3xl md">
+		<ul class="flex gap-x-3 text-[10px] ml-5 pr-5 py-2 ">
+            <li>
+            <a href="/">
+                Home
+            </a>
+            </li>
+            <li>
+                <a href="/blog">
+                    Blog
+                </a>
+            </li>
+            <li>
+                <a href="/about">
+                    About
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    Contact
+                </a>
+            </li>
+        </ul>
+	</nav>
+	</body>
+</html>
+<style>
+	:root{
+    --theme-primary:#03781a;  
+    --p: "Lato 300"; 
+    --embrace: "Lato"; 
+    --bold: "Lato bold"; 
+    --h1: "Roboto Serif"; 
+    --header: "Roboto 600";
+    --background: #eadede;  
+    --background-grey:#f2f2f2; 
+    --grey: #8a8a8a;
+    --grey-blue: #edf1f3;  
+	}
+	body {
+		background: var(--background-grey);
+		@apply text-neutral-600; 
+	}
+	@media (min-width:768px){
+		nav{
+			transform: translateX(-90%);
+			transition: transform 750ms ease-out;
+		}
+		nav:hover{
+			transform: translateX(0);
+			transition: transform 500ms ease-in-out;
+		}
+	}
+</style>

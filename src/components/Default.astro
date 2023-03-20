@@ -1,0 +1,27 @@
+---
+interface Props{
+	title ?: string,
+	bodyStyles?: string
+}
+const {title, bodyStyles} = Astro.props as Props; 
+---
+
+<html lang="en">
+	<head>
+		<script src="https://kit.fontawesome.com/53073dea72.js" crossorigin="anonymous"></script>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="generator" content={Astro.generator} />
+		<title>Blog {title && `| ${title}`}</title>
+	</head>
+
+	<body class={bodyStyles}>
+		<style>
+			@import "../pages/index.css"; 
+		</style>
+        <slot />
+	</body>
+</html>
+<style>
+</style>

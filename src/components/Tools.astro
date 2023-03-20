@@ -1,0 +1,38 @@
+---
+import ShareBoton from "./ShareBotton";
+---
+<ul class="flex justify-evenly w-full">
+    <li data-comment="like">
+        <i class="fa-regular fa-heart"></i>
+        <span>Like</span>
+    </li>
+    <li data-comment="comments">
+        <i class="fa-regular fa-comments"></i>
+        <span>Comments</span>
+    </li>
+    <li data-comment="save">
+        <i class="fa-regular fa-bookmark"></i>
+        <span>Save</span>
+    </li>
+    <li>
+        <ShareBoton client:load>
+            <i class="fa-solid fa-arrow-up-from-bracket"></i>
+            <span class="share-span">Share</span>
+        </ShareBoton> 
+    </li>
+</ul>
+<style>
+    li{
+        @apply relative w-14  text-[18px] text-center px-2 cursor-pointer; 
+    }
+    i:hover + span{
+        @apply visible; 
+    }
+    span{
+        @apply box-border bg-black/40 text-white absolute top-full w-14 left-1/2 -mx-7 text-center rounded-md text-[10px] invisible py-1
+    }
+    span::after{
+        content: "";
+        @apply absolute -top-[4.5px] left-1/2 -m-[5px] border-[5px] border-solid border-b-black/40 border-transparent
+    }
+</style>

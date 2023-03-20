@@ -1,0 +1,128 @@
+---
+import Default from "../components/Default.astro";
+import palmeras from "../assets/images/home/palmeras.jpg";
+import FooterHome from "../components/FooterHome.astro";
+---
+
+<Default title="Home">
+  <header 
+    class="grid py-10 px-2 h-screen"
+  >
+    <h1 class="text-7xl md:ml-10 md:my-auto">Blog Title</h1>
+    <div class="body flex flex-col px-3 md:p-10 ">
+      <span class="autor block font-strong relative my-7 md:w-40 md:px-2 md:text-center">
+        <a href="/about" class="relative">Autor Lastname</a>
+        <span> more of the autor</span>
+      </span>
+      <p class="text-[11px] md:text-sm">
+        Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+        Necessitatibus, velit illum atque, animi at ipsa perferendis soluta
+        nesciunt veniam architecto aliquid id incidunt voluptatum ratione quae
+        quas. Quo amet debitis dignissimos perferendis nisi autem ab qui aut id
+        corporis, ipsum quasi dolore, quos possimus eos numquam! Voluptate illo
+        cupiditate adipisci!
+      </p>
+      <ul class="home-nav mt-5 flex items-center h-full justify-between text-[13px] md:text-lg md:justify-start md:gap-x-4">
+        <a href="/blog" class="hidden md:block">
+          <li class="relative w-40 h-8 overflow-hidden rounded-2xl">
+            <div class="absolute bottom-1 w-full inset-x-0 mx-auto text-center">
+              <i class="fa-solid fa-angles-right"></i>
+            </div>
+            <div class="absolute bottom-1 w-full inset-x-0 mx-auto text-center">
+              Full Blog
+            </div>
+          </li>
+        </a>
+        <li class="bg-[var(--theme-primary)] px-2 py-3 rounded-2xl md:hidden text-white font-p ">
+          <a href="/blog" class="hover:text-white/70">
+            Full Blog&nbsp; 
+            <i class="fa-solid fa-angles-right"></i>
+          </a>
+        </li>
+        <li>
+          <a href="/blog/post/Article_1" class="hover:text-[#151515cc]">Lastest Post</a>
+        </li>
+        <li>
+          <a href="/contact" class="hover:text-[#151515cc]">Contact</a>
+        </li>
+      </ul>
+    </div>
+    <img src={palmeras} alt="palmeras hero" class="h-full object-fit md:row-span-2 md:mx-auto"/>
+  </header>
+  <FooterHome /> 
+</Default>
+<style>
+  .home-hero {
+    box-shadow: 5.6px 3.7px 31.3px rgba(0, 0, 0, 0.064),
+      18.3px 12px 90.8px rgba(0, 0, 0, 0.112),
+      75px 49px 336px rgba(0, 0, 0, 0.15);
+  }
+  @keyframes get-in-line {
+    from {
+      width: 0;
+    }
+    to {
+      width: 100%;
+    }
+  }
+  .autor:hover a::before {
+    animation: get-in-line 200ms ease-in-out;
+    position: absolute;
+    bottom: 0;
+    content: "";
+    background-color: black;
+    height: 1px;
+    width: 100%;
+  }
+  .autor span {
+    @apply md:opacity-0 left-2 absolute -bottom-3 text-neutral-700 md:bottom-1 md:translate-x-[170%];
+    font-size: 10px;
+    vertical-align: middle;
+    transition: opacity 250ms ease;
+  }
+  .autor:hover span {
+    opacity: 1;
+  }
+  .home-nav {
+    font-family: var(--embrace);
+  }
+
+  .home-nav li:first-child {
+    color: #fff;
+    background-color: var(--theme-primary);
+  }
+  .home-nav li:first-child div:first-of-type {
+    transition: transform 250ms ease-in;
+    transform: translateX(0);
+  }
+  .home-nav li:first-child div:last-of-type {
+    transform: translateX(-500%);
+    transition: transform 500ms ease-out;
+  }
+  .home-nav li:first-child:hover div:first-of-type {
+    transform: translateX(100%);
+  }
+  .home-nav li:first-child:hover div:last-of-type {
+    transform: translateX(0);
+  }
+  header{
+    grid-template-areas: "title image" "side image";
+    grid-template-columns: 50% 1fr;
+    grid-template-rows: 20vh 1fr;
+  }
+  @media (max-width: 768px) {
+    header{
+      grid-template-areas: "title title" "side image";
+      grid-template-columns: 50% 1fr;
+    }
+  }
+  h1{
+    grid-area: title;
+  }
+  header .body{
+    grid-area: side;
+  }
+  header img{
+    grid-area: image;
+  }
+</style>

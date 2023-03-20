@@ -1,0 +1,1 @@
+import"./chunks/Footer.astro_astro_type_script_index_0_lang.4b2ff7f8.js";import"./chunks/GoTop.astro_astro_type_script_index_0_lang.4bfa5487.js";const e=document.querySelector("#login");e.addEventListener("click",()=>{window.location.href="/login"});const o=document.querySelector("#createAcount");o.addEventListener("click",()=>{window.location.href="/createacount"});

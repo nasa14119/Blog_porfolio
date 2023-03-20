@@ -1,0 +1,114 @@
+---
+const { frontmatter } =  Astro.props; 
+import Default from "./Default.astro";
+import Footer from "./Footer.astro";
+import Hr from "./Hr.astro";
+import img_computer from "../assets/images/blog/computer.jpg"; 
+import moment from 'moment';
+import GoTop from "./GoTop.astro"
+import Nav from "./Nav.astro";
+import Tools from "./Tools.astro";
+const DATE = moment().format("DD / MMM / YYYY"); 
+---
+<Default title={frontmatter.title}>
+    <Nav/>
+    <div class="md:grid md:grid-cols-2">
+        <section class="md:max-w-lg rounded-3xl md:mx-auto">
+            <header class="w-full h-60 rounded-b-3xl overflow-hidden relative  text-white" id="top">  
+                <div class=" absolute inset-0 flex justify-center items-center bg-black/40">
+                    <span class="bg-black px-2">
+                        {
+                            frontmatter.autor
+                            || "Name Of Author"
+                        }
+                    </span>
+                </div>
+                <div class="absolute left-0 bottom-5 flex">
+                    <img src="https://picsum.photos/500" alt="" class="rounded-full w-1/12 ml-5 ">
+                    <ul class="flex  items-center gap-x-4 text-xs mx-5 list-['#']">
+                        {
+                            frontmatter.hashtags?.map( (ele: string) =>(
+                                <li class="pl-1">{ele} </li>
+                            )
+                            )
+                        }
+                    </ul>
+                </div>
+                <img src={frontmatter.heroImage || img_computer} alt="computer" class="min-h-full object-cover min-w-full">
+            </header>
+            <Hr color="#edf1f3"/>
+            <main class=" rounded-3xl p-5 bg-white">
+                <h2 class="font-header ">
+                    {frontmatter.title || "Error in Tittle"}
+                </h2>
+                <h5 class="font-bold pb-5 text-sm">
+                    {frontmatter.date || DATE}
+                </h5>
+                <div class="block md:hidden">
+                    <Tools/>
+                </div>
+                <article>
+                    <slot/>
+                </article>
+            </main>
+        </section>
+        <aside class="hidden md:block px-10 bg-[var(--grey-blue)]">
+            <header class="h-60 py-5 grid header-aside gap-y-5">
+                <div class="box-border bg-[#f6b67f] rounded-3xl flex items-center ">
+                    <span class="text-2xl font-strong px-5">
+                        <a href="/">
+                            Blog
+                        </a>
+                    </span>
+                    <span class="ml-auto text-[12px]">
+                        <a href="#" class="px-2">Log in</a>
+                        /
+                        <a href="#" class="px-2">Create an Acount</a>
+                    </span>
+                </div>
+                <div class="bg-[var(--theme-primary)] rounded-3xl flex items-center">
+                    <Tools />
+                </div>
+            </header>
+            <Hr color="#edf1f3"/>
+            <div class=" w-full grid place-content-center bg-red-500 h-60 rounded-3xl mb-5">
+                Ad
+            </div>
+            <div class="bg-[#f6b67f] rounded-3xl p-5 h-[85vh] z-40 sticky top-[7.5vh] ">
+                More Articles
+                <GoTop/>
+            </div>
+        </aside>
+    </div>
+    <Hr color="#edf1f3"/>
+    <Footer/>
+</Default>
+<style>
+    @keyframes imageLoad{
+     from{
+        transform: translateY(-100%);
+     }to{transform: translateY(0); opacity: 1;}
+    }
+    section header{
+        opacity: 0;
+        animation: imageLoad 1s forwards;
+        animation-delay: 2s;
+    }
+    body{
+        background-color: var(--grey-blue);
+    }
+</style>
+<style is:global>
+    article > h3{
+        @apply text-xl font-em
+    }
+    article > p{
+        @apply py-5
+    }
+    article blockquote{
+        @apply mx-5 border-l-2 border-l-neutral-400 px-2 my-2
+    }
+    .header-aside{
+        grid-template-rows: 1fr 4rem;
+    }
+</style>

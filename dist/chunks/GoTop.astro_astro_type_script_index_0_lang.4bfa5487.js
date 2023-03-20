@@ -1,0 +1,1 @@
+function c(){document.body.scrollTop=0,document.documentElement.scrollTop=0}let o=document.querySelector("#go-top-div");window.onscroll=()=>{document.body.scrollTop>=20||document.documentElement.scrollTop<=23?o.classList.add("hidden"):o.classList.remove("hidden")};o.onclick=c;
